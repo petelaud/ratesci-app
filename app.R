@@ -36,9 +36,9 @@ ui <- pageWithSidebar(
     ),
     textInput("level", "Confidence level (%):", "95"),
     selectInput("skew", "Skewness correction:", list("TRUE", "FALSE")),
-#    conditionalPanel('input.dist == "bin" && input.contrast != "p"',
-      selectInput("bcf", "N-1 correction:", list("TRUE", "FALSE")),
-#    ),
+    conditionalPanel('input.dist == "bin" && input.contrast != "p"',
+      selectInput("bcf", "'N-1' correction:", list("TRUE", "FALSE"))
+    ),
     textInput("precis", "Decimal precision:", "4"),
     width = 3
 
