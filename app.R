@@ -36,6 +36,9 @@ ui <- pageWithSidebar(
     ),
     textInput("level", "Confidence level (%):", "95"),
     selectInput("skew", "Skewness correction:", list("TRUE", "FALSE")),
+    conditionalPanel('input.dist == "bin" && input.contrast != "p"',
+      selectInput("bcf", "'N-1' correction:", list("TRUE", "FALSE"))
+    ),
     textInput("precis", "Decimal precision:", "4"),
     width = 3
 
@@ -81,6 +84,8 @@ server <- function(input, output) {
                    dist = input$dist,
                    contrast = input$contrast,
                    skew = input$skew,
+                   or_bias = input$skew,
+                   bcf = input$bcf,
                    #                   theta0 = as.numeric(input$theta0),
                    plot = FALSE,
                    precis = as.numeric(input$precis))
@@ -118,6 +123,8 @@ server <- function(input, output) {
             dist = input$dist,
             contrast = input$contrast,
             skew = input$skew,
+            or_bias = input$skew,
+            bcf = input$bcf,
             #            theta0 = as.numeric(input$theta0),
             plot = TRUE,
             precis = as.numeric(input$precis))
